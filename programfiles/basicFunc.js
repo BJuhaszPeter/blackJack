@@ -1,7 +1,5 @@
-const bankHand = [];
-const playerHand = [];
-const deck = require('./deck');
 const readline = require('readline-sync');
+// const deck = require('./deck');
 
 const shuffleDeck = (array) => {
   let currentIndex = array.length;
@@ -19,20 +17,45 @@ const shuffleDeck = (array) => {
   return array;
 };
 
-const dealCard = (shuffledDeck, handArray) => {
-  handArray.push(shuffledDeck[0]);
-};
+// const dealCard = (shuffledDeck, handArray) => {
+//   handArray.push(shuffledDeck[0]);
+// };
 
 const revileCard = (handArray) => {
   console.log(handArray);
 };
 
-const revileTable = () => {
+const revileTable = (bankHand, playerHand) => {
   console.log('BANK:');
   revileCard(bankHand[1]);
   console.log(' ');
   console.log('Player:');
   revileCard(playerHand);
+};
+
+const revileFullTable = (playerHand, bankHand) => {
+  console.log('BANK:');
+  revileCard(bankHand);
+  console.log(' ');
+  console.log('Player:');
+  revileCard(playerHand);
+};
+
+const handValue = (Arr) => {
+  let cardValue = 0;
+  const aceSum = [];
+  for (let i = 0; i < Arr.length; i++) {
+    cardValue = cardValue + Arr[i].value;
+  }
+  for (let j = 0; j < Arr.length; j++) {
+    if (Arr[j].name === 'Ace') {
+      aceSum.push(Arr[j]);
+    }
+  }
+  if (aceSum.length > 0) {
+    cardValue = cardValue - ((aceSum.length - 1) * 10);
+  }
+  return cardValue;
 };
 
 const mainHandDeal = (shuffledDeck, playerHand, bankHand) => {
@@ -43,23 +66,46 @@ const mainHandDeal = (shuffledDeck, playerHand, bankHand) => {
   playerHand.push(shuffledDeck[i++]);
 };
 
-const callPlayerCard = (shuffledDeck, playerHand, num) => {
+const callPlayerCard = (shuffledDeck, playerHand, bankHand, num) => {
   const call = readline.question('chose order:');
+  console.clear();
 
   if (call === 'h') {
     playerHand.push(shuffledDeck[num]);
   } else if (call === 's') {
-    return playerHand;
+    console.clear();
+    revileFullTable(playerHand, bankHand);
+
+    while (handValue(bankHand) < 17) {
+      console.clear();
+      revileFullTable(playerHand, bankHand);
+      bankHand.push(shuffledDeck[num++]);
+    }
+    return console.clear();
   }
-
-  revileTable();
-
-  callPlayerCard(shuffledDeck, playerHand, num + 1);
+  revileTable(bankHand, playerHand);
+  callPlayerCard(shuffledDeck, playerHand, bankHand, num + 1);
 };
-const shuffledDeck = shuffleDeck(deck.deckArray);
 
-mainHandDeal(shuffledDeck, playerHand, bankHand);
+// const dealBankCard = (shuffledDeck, playerHand, bankHand, num) => {
+//   console.clear();
+//   revileFullTable(playerHand, bankHand);
+//   if (handValue(bankHand) < 17) {
+//     bankHand.push(shuffledDeck[num]);
+//   } else {
+//     revileFullTable(playerHand, bankHand);
+//   }
+//   revileFullTable(playerHand, bankHand);
+//   dealBankCard(shuffledDeck, playerHand, bankHand, num + 1);
+// };
 
-revileTable();
+module.exports = {
+  shuffleDeck,
+  revileCard,
+  revileTable,
+  mainHandDeal,
+  callPlayerCard,
+  revileFullTable,
+  handValue
 
-callPlayerCard(shuffledDeck, playerHand, 4);
+};
