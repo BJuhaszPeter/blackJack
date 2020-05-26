@@ -1,5 +1,6 @@
 const readline = require('readline-sync');
 // const deck = require('./deck');
+// const stake = require('./pot');
 
 const shuffleDeck = (array) => {
   let currentIndex = array.length;
@@ -67,11 +68,17 @@ const mainHandDeal = (shuffledDeck, playerHand, bankHand) => {
 };
 
 const callPlayerCard = (shuffledDeck, playerHand, bankHand, num) => {
-  const call = readline.question('chose order:');
+  const call = readline.question('CHOOSE ORDER! (h)it / (s)tay:');
   console.clear();
 
   if (call === 'h') {
     playerHand.push(shuffledDeck[num]);
+    bustInvest(playerHand);
+    for (let i = 0; i < playerHand.length; i++) {
+      if (playerHand[i] === 'BUST') {
+        return;
+      }
+    }
   } else if (call === 's') {
     console.clear();
     revileFullTable(playerHand, bankHand);
@@ -80,12 +87,51 @@ const callPlayerCard = (shuffledDeck, playerHand, bankHand, num) => {
       console.clear();
       revileFullTable(playerHand, bankHand);
       bankHand.push(shuffledDeck[num++]);
+      bustInvest(bankHand);
     }
     return console.clear();
   }
   revileTable(bankHand, playerHand);
   callPlayerCard(shuffledDeck, playerHand, bankHand, num + 1);
 };
+const bustInvest = (handArr) => {
+  if (handValue(handArr) > 21) {
+    handArr.push('BUST');
+    return handArr;
+  }
+};
+
+// const quitOrNewGame = () => {
+//   const key = readline.question('Kilépés: (q) / Új Játék: (n)');
+//   if (key === 'q') {
+//     process.exit();
+//   } else if (key === 'n') {
+//     console.clear();
+//     main();
+//   }
+// };
+
+// const endGameLoop = () => {
+//   if (stake.chipCase[0].value === 0) {
+//     console.log('PLAYER IS INSOLVENCY');
+//     console.log('THE BANK WIN');
+//     console.log('GAME OVER');
+//     quitOrNewGame();
+//   } else if (stake.chipCase[2].value === 0) {
+//     console.log('BANK IS INSOLVENCY');
+//     console.log('THE PLAYER WIN');
+//     console.log('GAME OVER');
+//     quitOrNewGame();
+//   } else {
+//     const key = readline.question('DO YOU WANT TO COUNTINE THIS GAME? (y/n)');
+//     if (key === 'n') {
+//       quitOrNewGame();
+//     } else if (key === 'y') {
+//       console.clear();
+//       main();
+//     }
+//   }
+// };
 
 // const dealBankCard = (shuffledDeck, playerHand, bankHand, num) => {
 //   console.clear();
@@ -106,6 +152,7 @@ module.exports = {
   mainHandDeal,
   callPlayerCard,
   revileFullTable,
-  handValue
+  handValue,
+  bustInvest
 
 };
