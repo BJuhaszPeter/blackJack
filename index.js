@@ -2,6 +2,7 @@ const deck = require('./programfiles/deck');
 const bf = require('./programfiles/basicFunc');
 const stake = require('./programfiles/pot');
 const readline = require('readline-sync');
+const desk = require('./programfiles/desk');
 
 const quitOrNewGame = () => {
   const key = readline.question('Kilépés: (q) / Új Játék: (n)');
@@ -10,7 +11,7 @@ const quitOrNewGame = () => {
     process.exit();
   } else if (key === 'n') {
     console.clear();
-    console.log('A játék újrakezdés még nem érhető el a demo változatban. idítsd újra a programot ha szeretnél új játékot!');
+    console.log('A játék újrakezdés még nem érhető el a demo változatban. Idítsd újra a programot ha szeretnél új játékot!');
     process.exit();
   }
 };
@@ -37,17 +38,17 @@ const endGameLoop = () => {
 };
 
 const main = () => {
+  let pot = 0;
   const bankHand = [];
   const playerHand = [];
   const shuffledDeck = bf.shuffleDeck(deck.deckArray);
   bf.mainHandDeal(shuffledDeck, playerHand, bankHand);
-  bf.revileTable(bankHand, playerHand);
-  console.log('BANK:', stake.chipCase[2].value, 'PLAYER:', stake.chipCase[0].value);
-  let pot = stake.makeThePot(stake.chipCase);
-  stake.printChip(stake.chipCase, pot);
-  bf.callPlayerCard(shuffledDeck, playerHand, bankHand, 4);
+  desk.printTableMain(bankHand, playerHand, pot);
+  pot = stake.makeThePot(stake.chipCase);
+  // stake.printChip(stake.chipCase, pot);
+  bf.callPlayerCard(shuffledDeck, playerHand, bankHand, 4, pot);
   console.clear();
-  bf.revileFullTable(playerHand, bankHand);
+  desk.printTableFull(bankHand, playerHand, pot);
   stake.WinConInv(playerHand, bankHand, pot, stake.chipCase);
   pot -= pot;
   // console.log(pot);
