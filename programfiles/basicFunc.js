@@ -1,6 +1,8 @@
 const readline = require('readline-sync');
 // const deck = require('./deck');
 // const stake = require('./pot');
+// const card = require('./card');
+const desk = require('./desk');
 
 const shuffleDeck = (array) => {
   let currentIndex = array.length;
@@ -28,7 +30,7 @@ const revileCard = (handArray) => {
 
 const revileTable = (bankHand, playerHand) => {
   console.log('BANK:');
-  revileCard(bankHand[1]);
+  revileCard(bankHand[0]);
   console.log(' ');
   console.log('Player:');
   revileCard(playerHand);
@@ -61,13 +63,14 @@ const handValue = (Arr) => {
 
 const mainHandDeal = (shuffledDeck, playerHand, bankHand) => {
   let i = 0;
+
   bankHand.push(shuffledDeck[i++]);
   playerHand.push(shuffledDeck[i++]);
   bankHand.push(shuffledDeck[i++]);
   playerHand.push(shuffledDeck[i++]);
 };
 
-const callPlayerCard = (shuffledDeck, playerHand, bankHand, num) => {
+const callPlayerCard = (shuffledDeck, playerHand, bankHand, num, pot) => {
   const call = readline.question('CHOOSE ORDER! (h)it / (s)tay:');
   console.clear();
 
@@ -80,20 +83,19 @@ const callPlayerCard = (shuffledDeck, playerHand, bankHand, num) => {
       }
     }
   } else if (call === 's') {
-    console.clear();
-    revileFullTable(playerHand, bankHand);
+    desk.printTableFull(bankHand, playerHand, pot);
 
     while (handValue(bankHand) < 17) {
-      console.clear();
-      revileFullTable(playerHand, bankHand);
+      desk.printTableFull(bankHand, playerHand, pot);
       bankHand.push(shuffledDeck[num++]);
       bustInvest(bankHand);
     }
-    return console.clear();
+    return desk.printTableFull(bankHand, playerHand, pot);
   }
-  revileTable(bankHand, playerHand);
+  desk.printTableMain(bankHand, playerHand, pot);
   callPlayerCard(shuffledDeck, playerHand, bankHand, num + 1);
 };
+
 const bustInvest = (handArr) => {
   if (handValue(handArr) > 21) {
     handArr.push('BUST');

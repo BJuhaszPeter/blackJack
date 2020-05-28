@@ -1,282 +1,284 @@
+const chalk = require('chalk');
+
 const deckArray = [
   {
-    name: '1',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('1 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 1
   },
   {
-    name: '2',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('2 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 2
   },
   {
-    name: '3',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('3 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 3
   },
   {
-    name: '4',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('4 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 4
   },
   {
-    name: '5',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('5 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 5
   },
   {
-    name: '6',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('6 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 6
   },
   {
-    name: '7',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('7 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 7
   },
   {
-    name: '8',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('8 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 8
   },
   {
-    name: '9',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('9 '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 9
   },
   {
-    name: '10',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('10'),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 10
   },
   {
-    name: 'Jack',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('J '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 10
   },
   {
-    name: 'Queen',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('Q '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 10
   },
   {
-    name: 'King',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('K '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 10
   },
   {
-    name: 'Ace',
-    color: 'spades',
+    name: chalk.bold.rgb(0, 0, 0)('A '),
+    color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 11
   },
   {
-    name: '1',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('1 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 1
   },
   {
-    name: '2',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('2 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 2
   },
   {
-    name: '3',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('3 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 3
   },
   {
-    name: '4',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('4 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 4
   },
   {
-    name: '5',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('5 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 5
   },
   {
-    name: '6',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('6 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 6
   },
   {
-    name: '7',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('7 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 7
   },
   {
-    name: '8',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('8 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 8
   },
   {
-    name: '9',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('9 '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 9
   },
   {
-    name: '10',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('10'),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 10
   },
   {
-    name: 'Jack',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('J '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 10
   },
   {
-    name: 'Queen',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('Q '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 10
   },
   {
-    name: 'King',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('K '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 10
   },
   {
-    name: 'Ace',
-    color: 'hearts',
+    name: chalk.bold.rgb(250, 0, 0)('A '),
+    color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 11
   },
   {
-    name: '1',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('1 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 1
   },
   {
-    name: '2',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('2 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 2
   },
   {
-    name: '3',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('3 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 3
   },
   {
-    name: '4',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('4 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 4
   },
   {
-    name: '5',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('5 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 5
   },
   {
-    name: '6',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('6 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 6
   },
   {
-    name: '7',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('7 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 7
   },
   {
-    name: '8',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('8 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 8
   },
   {
-    name: '9',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('9 '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 9
   },
   {
-    name: '10',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('10'),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 10
   },
   {
-    name: 'Jack',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('J '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 10
   },
   {
-    name: 'Queen',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('Q '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 10
   },
   {
-    name: 'King',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('K '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 10
   },
   {
-    name: 'Ace',
-    color: 'clubs',
+    name: chalk.bold.rgb(0, 0, 0)('A '),
+    color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 11
   },
   {
-    name: '1',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('1 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 1
   },
   {
-    name: '2',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('2 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 2
   },
   {
-    name: '3',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('3 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 3
   },
   {
-    name: '4',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('4 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 4
   },
   {
-    name: '5',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('5 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 5
   },
   {
-    name: '6',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('6 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 6
   },
   {
-    name: '7',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('7 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 7
   },
   {
-    name: '8',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('8 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 8
   },
   {
-    name: '9',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('9 '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 9
   },
   {
-    name: '10',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('10'),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 10
   },
   {
-    name: 'Jack',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('J '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 10
   },
   {
-    name: 'Queen',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('Q '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 10
   },
   {
-    name: 'King',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('K '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 10
   },
   {
-    name: 'Ace',
-    color: 'diamonds',
+    name: chalk.bold.rgb(250, 0, 0)('A '),
+    color: chalk.bold.rgb(250, 0, 0)('♦'),
     value: 11
   }
 
