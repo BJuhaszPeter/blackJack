@@ -23,8 +23,8 @@ const printChip = (chipCase) => {
   console.log(chipCase[2].name, ':', chipCase[2].value);
 };
 
-const makeThePot = (chipCase) => {
-  const pot = readline.question('TAKE THE POT');
+const makeThePot = (chipCase, pot) => {
+  pot = readline.question('TAKE THE POT');
   if (chipCase[0].value < pot) {
     console.log('YOU DONT HAVE THIS MOUNT OF CHIPS');
     makeThePot(chipCase);
@@ -64,6 +64,9 @@ const pushThePot = (chipCase, pot) => {
 };
 
 const WinConInv = (playerHand, bankHand, pot, chipCase) => {
+  const bankValue = 0;
+  const playerValue = 0;
+
   for (let i = 0; i < playerHand.length; i++) {
     if (playerHand[i] === 'BUST') {
       loseThePot(chipCase, pot);
@@ -76,15 +79,24 @@ const WinConInv = (playerHand, bankHand, pot, chipCase) => {
       return console.log('BANK BUST!');
     }
   }
-  if (chipCase[2].value > chipCase[0].value) {
+  for (let i = 0; i < bankHand.length; i++) {
+    bankHand[i].value = (bankValue + bankHand[i].value);
+    return bankValue;
+  }
+  for (let i = 0; i < playerHand.length; i++) {
+    playerHand[i].value = (playerValue + playerHand[i].value);
+    return playerValue;
+  }
+
+  if (bankValue > playerValue) {
     console.log('BANK:', chipCase[2].value, 'PLAYER:', chipCase[0].value);
-    loseThePot(chipCase, pot);
-  } else if (chipCase[2].value < chipCase[0].value) {
+    return loseThePot(chipCase, pot);
+  } else if (bankValue < playerValue) {
     console.log('BANK:', chipCase[2].value, 'PLAYER:', chipCase[0].value);
-    winThePot(chipCase, pot);
-  } else {
+    return winThePot(chipCase, pot);
+  } else if (bankValue === playerValue) {
     console.log('BANK:', chipCase[2].value, 'PLAYER:', chipCase[0].value);
-    pushThePot(chipCase, pot);
+    return pushThePot(chipCase, pot);
   }
 };
 
