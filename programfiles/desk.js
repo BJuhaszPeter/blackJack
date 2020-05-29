@@ -19,6 +19,7 @@ const fillTable = (desk) => {
       desk[i][j] = (' ');
     }
   }
+  return desk;
 };
 
 const fillWithCont = (desk, bankHand, playerHand, pot) => {
@@ -38,8 +39,9 @@ const fillWithCont = (desk, bankHand, playerHand, pot) => {
       desk[7][i + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
     }
   }
-  desk[9][0] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
-  desk[9][1] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
+  desk[4][6] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
+  desk[4][7] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
+  return desk;
 };
 
 const fillWithContFull = (desk, bankHand, playerHand, pot) => {
@@ -53,7 +55,7 @@ const fillWithContFull = (desk, bankHand, playerHand, pot) => {
   for (let j = 0; j < bankHand.length; j++) {
     desk[6][j + 1] = card.convertCard(bankHand[j]);
     if (bankHand[j] === 'BUST') {
-      desk[7][j + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
+      desk[6][j + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
     }
   }
   desk[7][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('PLAYER CARDS:');
@@ -63,8 +65,9 @@ const fillWithContFull = (desk, bankHand, playerHand, pot) => {
       desk[7][i + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
     }
   }
-  desk[9][0] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
-  desk[9][1] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
+  desk[4][6] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
+  desk[4][7] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
+  return desk;
 };
 
 const printTableMain = (bankHand, playerHand, pot) => {
@@ -72,7 +75,8 @@ const printTableMain = (bankHand, playerHand, pot) => {
   fillTable(desk);
   fillWithCont(desk, bankHand, playerHand, pot);
   console.clear();
-  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 100, 0)(table.table(desk, config))));
+  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 150, 0)(table.table(desk, config))));
+  return desk;
 };
 
 const printTableFull = (bankHand, playerHand, pot) => {
@@ -80,7 +84,8 @@ const printTableFull = (bankHand, playerHand, pot) => {
   fillTable(desk);
   fillWithContFull(desk, bankHand, playerHand, pot);
   console.clear();
-  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 100, 0)(table.table(desk, config))));
+  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 150, 0)(table.table(desk, config))));
+  return desk;
 };
 
 const config = {
@@ -121,6 +126,10 @@ const config = {
     8: {
       alignment: 'center',
       width: 12
+    },
+    9: {
+      alignment: 'center',
+      width: 16
     }
   }
 
