@@ -46,15 +46,6 @@ const overCard = () => {
   return overCrd;
 };
 
-// const card = GenereateCard();
-// const cardName = deck.deckArray[2].name;
-// const cardColor = deck.deckArray[2].color;
-// fillCard(card, cardName, cardColor);
-
-// const actCard = deck.deckArray[2];
-// console.log(convertCard(actCard));
-// console.log(overCard());
-
 module.exports = {
   GenereateCard,
   fillCard,

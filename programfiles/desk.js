@@ -1,15 +1,14 @@
-// const deck = require('./deck');
-// const bf = require('./basicFunc');
+
 const stake = require('./pot');
 const card = require('./card');
-// const readline = require('readline-sync');
+
 const table = require('table');
 const chalk = require('chalk');
 
 const generateTabel = (n, m) => {
-  const arr = new Array(n); // Sorok létrehozása
+  const arr = new Array(n);
   for (let i = 0; i < n; i++) {
-    arr[i] = new Array(m); // minden sorhoz m oszlop hozzáadása
+    arr[i] = new Array(m);
   }
   return arr;
 };
@@ -23,68 +22,132 @@ const fillTable = (desk) => {
 };
 
 const fillWithCont = (desk, bankHand, playerHand, pot) => {
-  desk[1][2] = chalk.underline.bold.rgb(250, 250, 250).bgRgb(0, 0, 0)('BLACKJACK');
-  desk[3][0] = chalk.bold.rgb(0, 0, 0).bgRgb(255, 156, 0)('CHIPPOOL:');
-  desk[4][0] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('BANK:');
-  desk[4][1] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[2].value);
-  desk[4][3] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('PLAYER:');
-  desk[4][4] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[0].value);
-  desk[6][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('BANK CARDS:');
-  desk[6][1] = card.convertCard(bankHand[0]);
-  desk[6][2] = card.overCard();
-  desk[7][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('PLAYER CARDS:');
+  desk[1][0] = chalk.bold.rgb(0, 0, 0).bgRgb(255, 156, 0)('CHIPPOOL:');
+  desk[2][0] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('BANK:');
+  desk[2][1] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[2].value);
+  desk[2][3] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('PLAYER:');
+  desk[2][4] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[0].value);
+  desk[4][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('BANK CARDS:');
+  desk[4][1] = card.convertCard(bankHand[0]);
+  desk[4][2] = card.overCard();
+  desk[5][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('PLAYER CARDS:');
   for (let i = 0; i < playerHand.length; i++) {
-    desk[7][i + 1] = card.convertCard(playerHand[i]);
+    desk[5][i + 1] = card.convertCard(playerHand[i]);
     if (playerHand[i] === 'BUST') {
-      desk[7][i + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
+      desk[5][i + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
     }
   }
-  desk[4][6] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
-  desk[4][7] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
+  desk[2][6] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
+  desk[2][7] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
   return desk;
 };
 
 const fillWithContFull = (desk, bankHand, playerHand, pot) => {
-  desk[1][2] = chalk.underline.bold.rgb(250, 250, 250).bgRgb(0, 0, 0)('BLACKJACK');
-  desk[3][0] = chalk.bold.rgb(0, 0, 0).bgRgb(255, 156, 0)('CHIPPOOL:');
-  desk[4][0] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('BANK:');
-  desk[4][1] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[2].value);
-  desk[4][3] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('PLAYER:');
-  desk[4][4] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[0].value);
-  desk[6][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('BANK CARDS:');
+  desk[1][0] = chalk.bold.rgb(0, 0, 0).bgRgb(255, 156, 0)('CHIPPOOL:');
+  desk[2][0] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('BANK:');
+  desk[2][1] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[2].value);
+  desk[2][3] = chalk.bold.rgb(50, 50, 50).bgRgb(255, 200, 0)('PLAYER:');
+  desk[2][4] = chalk.bold.rgb(255, 255, 50).bgRgb(50, 50, 50)(stake.chipCase[0].value);
+  desk[4][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('BANK CARDS:');
   for (let j = 0; j < bankHand.length; j++) {
-    desk[6][j + 1] = card.convertCard(bankHand[j]);
+    desk[4][j + 1] = card.convertCard(bankHand[j]);
     if (bankHand[j] === 'BUST') {
-      desk[6][j + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
+      desk[4][j + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
     }
   }
-  desk[7][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('PLAYER CARDS:');
+  desk[5][0] = chalk.bold.rgb(255, 255, 250).bgRgb(50, 50, 50)('PLAYER CARDS:');
   for (let i = 0; i < playerHand.length; i++) {
-    desk[7][i + 1] = card.convertCard(playerHand[i]);
+    desk[5][i + 1] = card.convertCard(playerHand[i]);
     if (playerHand[i] === 'BUST') {
-      desk[7][i + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
+      desk[5][i + 1] = chalk.bold.rgb(155, 0, 0)('BUST');
     }
   }
-  desk[4][6] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
-  desk[4][7] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
+  desk[2][6] = chalk.bold.rgb(150, 50, 50).bgRgb(255, 255, 50)('POT:');
+  desk[2][7] = chalk.bold.rgb(155, 50, 50).bgRgb(50, 50, 50)(pot);
   return desk;
 };
 
+const fillAnim = (bjAnim, animContent) => {
+  for (let i = 0; i < bjAnim[0].length; i++) {
+    bjAnim[0][i] = animContent[i];
+  }
+  return bjAnim;
+};
+
 const printTableMain = (bankHand, playerHand, pot) => {
-  const desk = generateTabel(10, 10);
+  const animContent = [
+    (chalk.bold.rgb(0, 0, 0)('CASINO')),
+    (chalk.bold.rgb(250, 0, 0)('BLACK')),
+    (chalk.bold.rgb(0, 0, 0)('JACK')),
+    (chalk.bold.rgb(250, 0, 0)('CASINO')),
+    (chalk.bold.rgb(0, 0, 0)('BLACK')),
+    (chalk.bold.rgb(250, 0, 0)('JACK')),
+    (chalk.bold.rgb(0, 0, 0)('CASINO')),
+    (chalk.bold.rgb(250, 0, 0)('BLACK')),
+    (chalk.bold.rgb(0, 0, 0)('JACK'))
+  ];
+  const termContent = [
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('GAME')),
+    (chalk.bold.rgb(250, 250, 250)('TERMINAL')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)(' '))
+  ];
+  const bjAnim = generateTabel(1, 9);
+  fillAnim(bjAnim, animContent);
+  const term = generateTabel(1, 9);
+  fillAnim(term, termContent);
+  const desk = generateTabel(7, 9);
   fillTable(desk);
   fillWithCont(desk, bankHand, playerHand, pot);
   console.clear();
-  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 150, 0)(table.table(desk, config))));
+  console.log(chalk.bgRgb(250, 250, 250)(chalk.rgb(250, 250, 250)(table.table(bjAnim, config))));
+  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 100, 0)(table.table(desk, config))));
+  console.log(chalk.bgRgb(250, 250, 250)(chalk.rgb(250, 250, 250)(table.table(bjAnim, config))));
+  console.log(chalk.bgRgb(0, 0, 0)(chalk.rgb(0, 0, 0)(table.table(term, config))));
   return desk;
 };
 
 const printTableFull = (bankHand, playerHand, pot) => {
-  const desk = generateTabel(10, 10);
+  const animContent = [
+    (chalk.bold.rgb(0, 0, 0)('CASINO')),
+    (chalk.bold.rgb(250, 0, 0)('BLACK')),
+    (chalk.bold.rgb(0, 0, 0)('JACK')),
+    (chalk.bold.rgb(250, 0, 0)('CASINO')),
+    (chalk.bold.rgb(0, 0, 0)('BLACK')),
+    (chalk.bold.rgb(250, 0, 0)('JACK')),
+    (chalk.bold.rgb(0, 0, 0)('CASINO')),
+    (chalk.bold.rgb(250, 0, 0)('BLACK')),
+    (chalk.bold.rgb(0, 0, 0)('JACK'))
+  ];
+  const termContent = [
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('GAME')),
+    (chalk.bold.rgb(250, 250, 250)('TERMINAL')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)('V')),
+    (chalk.bold.rgb(250, 250, 250)(' '))
+  ];
+  const bjAnim = generateTabel(1, 9);
+  fillAnim(bjAnim, animContent);
+  const term = generateTabel(1, 9);
+  fillAnim(term, termContent);
+  const desk = generateTabel(7, 9);
+
   fillTable(desk);
   fillWithContFull(desk, bankHand, playerHand, pot);
   console.clear();
-  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 150, 0)(table.table(desk, config))));
+  console.log(chalk.bgRgb(250, 250, 250)(chalk.rgb(250, 250, 250)(table.table(bjAnim, config))));
+  console.log(chalk.bgRgb(0, 100, 0)(chalk.rgb(0, 100, 0)(table.table(desk, config))));
+  console.log(chalk.bgRgb(250, 250, 250)(chalk.rgb(250, 250, 250)(table.table(bjAnim, config))));
+  console.log(chalk.bgRgb(0, 0, 0)(chalk.rgb(0, 0, 0)(table.table(term, config))));
   return desk;
 };
 
@@ -126,18 +189,11 @@ const config = {
     8: {
       alignment: 'center',
       width: 12
-    },
-    9: {
-      alignment: 'center',
-      width: 16
     }
+
   }
 
 };
-
-// printTableMain(bankHand, playerHand, pot);
-
-// printTableFull(bankHand, playerHand, pot);
 
 module.exports = {
   generateTabel,
