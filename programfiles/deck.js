@@ -1,11 +1,7 @@
 const chalk = require('chalk');
 
 const deckArray = [
-  {
-    name: chalk.bold.rgb(0, 0, 0)('1 '),
-    color: chalk.bold.rgb(0, 0, 0)('♠'),
-    value: 1
-  },
+
   {
     name: chalk.bold.rgb(0, 0, 0)('2 '),
     color: chalk.bold.rgb(0, 0, 0)('♠'),
@@ -66,15 +62,11 @@ const deckArray = [
     color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 10
   },
+
   {
     name: chalk.bold.rgb(0, 0, 0)('A '),
     color: chalk.bold.rgb(0, 0, 0)('♠'),
     value: 11
-  },
-  {
-    name: chalk.bold.rgb(250, 0, 0)('1 '),
-    color: chalk.bold.rgb(250, 0, 0)('♥'),
-    value: 1
   },
   {
     name: chalk.bold.rgb(250, 0, 0)('2 '),
@@ -141,11 +133,7 @@ const deckArray = [
     color: chalk.bold.rgb(250, 0, 0)('♥'),
     value: 11
   },
-  {
-    name: chalk.bold.rgb(0, 0, 0)('1 '),
-    color: chalk.bold.rgb(0, 0, 0)('♣'),
-    value: 1
-  },
+
   {
     name: chalk.bold.rgb(0, 0, 0)('2 '),
     color: chalk.bold.rgb(0, 0, 0)('♣'),
@@ -211,11 +199,7 @@ const deckArray = [
     color: chalk.bold.rgb(0, 0, 0)('♣'),
     value: 11
   },
-  {
-    name: chalk.bold.rgb(250, 0, 0)('1 '),
-    color: chalk.bold.rgb(250, 0, 0)('♦'),
-    value: 1
-  },
+
   {
     name: chalk.bold.rgb(250, 0, 0)('2 '),
     color: chalk.bold.rgb(250, 0, 0)('♦'),

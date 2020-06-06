@@ -78,10 +78,10 @@ const fillMainMenu = () => {
   const casino = generateCasino();
   const black = generateBlack();
   const jack = generateJack();
-  mainMenu[1][0] = card.convertCard(deck.deckArray[13]);
-  mainMenu[1][3] = card.convertCard(deck.deckArray[55]);
-  mainMenu[2][0] = card.convertCard(deck.deckArray[27]);
-  mainMenu[2][3] = card.convertCard(deck.deckArray[41]);
+  mainMenu[1][0] = card.convertCard(deck.deckArray[12]);
+  mainMenu[1][3] = card.convertCard(deck.deckArray[51]);
+  mainMenu[2][0] = card.convertCard(deck.deckArray[25]);
+  mainMenu[2][3] = card.convertCard(deck.deckArray[38]);
   mainMenu[1][1] = casino;
   mainMenu[2][1] = black;
   mainMenu[2][2] = jack;
