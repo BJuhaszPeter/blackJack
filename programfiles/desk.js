@@ -126,18 +126,10 @@ const config = {
     8: {
       alignment: 'center',
       width: 12
-    },
-    9: {
-      alignment: 'center',
-      width: 16
     }
   }
 
 };
-
-// printTableMain(bankHand, playerHand, pot);
-
-// printTableFull(bankHand, playerHand, pot);
 
 module.exports = {
   generateTabel,
