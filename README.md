@@ -1,14 +1,28 @@
-# blackJack
+# Black Jack - first JavaScript practice project (caracter based game for terminal)
 
-Indítás: terminálban node index.js
+The first project in my learning process.Unfortunately, I'd refactor it in many ways by now if I had the time (but I don't as I'm working very diligently on new projects to improve my skills). On the other hand, it's extremely fun to look back on my initial attempts and decipher this spaghetti monster.
 
-main menü q: kilépés n: új játék
+## Focus of the exercise
 
-Kezdő leosztás megjelenítése után tét megadása
+- I used css modules to create the design
+- Used the react-scroll and react-router libraries
+- I built the sections more dynamically than in the exercise
 
-h: új lapkérés
-s: megállás
+## Launch and control
 
-megállás után a bank húzása következik
+Start in terminal: node index.js
 
-kiértékelés után kilépés:q új játék:n 
+main menu:
+- q: exit 
+- n: new game
+
+show starting hand after placing bet
+
+- h: new card request
+- s: stop
+
+after stopping, the bank is drawn
+
+after evaluation:
+- q: exit 
+- n: new game
